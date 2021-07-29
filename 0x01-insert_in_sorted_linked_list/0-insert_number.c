@@ -25,15 +25,19 @@ listint_t *insert_node(listint_t **head, int number){
                 return (newNode);
         }
     
-        if (*head && (*head)->next->n > number)
+        if (*head && (*head)->n > number)
         {
-                *head = newNode;
                 newNode->next = *head;
+                *head = newNode;
         }
-	for (buffNode = *head; buffNode->next && buffNode->next->n < number; buffNode = buffNode->next);
+	else
+        {
+                for (buffNode = *head; buffNode->next && buffNode->next->n < number; buffNode = buffNode->next);
         
-        newNode->next = buffNode->next;
-        buffNode->next = newNode;
+                newNode->next = buffNode->next;
+                buffNode->next = newNode;
+        }
+        
         
 	return (newNode);
 }

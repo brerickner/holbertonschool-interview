@@ -19,6 +19,7 @@ def minOperations(n):
     while (ops <= n):
         if (n % copies == 0):
             copies += 1
+            ops += 1
         else:
             n /= copies
             ops += copies

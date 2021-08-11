@@ -14,7 +14,7 @@ def minOperations(n):
 
     if (n <= 0):
         return (0)
-    if (isinstance(n, int) == False):
+    if (not isinstance(n, int)):
         return (0)
     if (n == 1):
         return (0)

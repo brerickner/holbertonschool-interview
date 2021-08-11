@@ -14,8 +14,9 @@ def minOperations(n):
 
     if (n <= 0):
         return (0)
-    if (isinstance(n, "int")):
-        print("meow")
+    if (isinstance(n, int) == False):
+        return (0)
+    if (n == 1):
         return (0)
     while (ops * ops <= n):
         if (n % ops):

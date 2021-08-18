@@ -41,9 +41,9 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		}
 	}
 	grid1 = nextPile;
-	// print_grid(nextPile);
 	print_grid(sandPile);
 }
+
 /**
  * print_grid - int grid[3][3]
  * @grid: grid to print

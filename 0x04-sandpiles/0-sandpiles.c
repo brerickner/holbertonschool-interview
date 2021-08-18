@@ -11,7 +11,7 @@
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int x, y;
+	int x, y, alert = 0;
 	int sumPile[3][3];
 	int nextPile[3][3];
 
@@ -20,36 +20,41 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	{
 		for (y = 0; y < 3; y++)
 		{
-			sumPile[x][y] = grid1[x][y] + grid2[x][y];
+			grid1[x][y] += grid2[x][y];
+			if (grid1[x][y] > 4)
+				alert++;
 		}
 	}
 	printf("=\n");
-	print_grid(sumPile);
-	for (x = 0; x < 3; x++)
+	print_grid(grid1);
+	while(alert)
 	{
-		for (y = 0; y < 3; y++)
+		alert = 0;
+		for (x = 0; x < 3; x++)
 		{
-			if (sumPile[x][y] < 4)
-				nextPile[x][y] = sumPile[x][y];
-		}
-	}
-
-	for (x = 0; x < 3; x++)
-	{
-		for (y = 0; y < 3; y++)
-		{
-			if (sumPile[x][y] >= 4)
+			for (y = 0; y < 3; y++)
 			{
-				nextPile[x][y] = sumPile[x][y] - 4;
-				nextPile[x + 1][y]++;
-				nextPile[x - 1][y]++;
-				nextPile[x][y + 1]++;
-				nextPile[x][y - 1]++;
+				if (sumPile[x][y] < 4)
+					nextPile[x][y] = sumPile[x][y];
 			}
 		}
-	
-	grid1 = nextPile;
-	print_grid(grid1);
+
+		for (x = 0; x < 3; x++)
+		{
+			for (y = 0; y < 3; y++)
+			{
+				if (sumPile[x][y] >= 4)
+				{
+					nextPile[x][y] = sumPile[x][y] - 4;
+					nextPile[x + 1][y]++;
+					nextPile[x - 1][y]++;
+					nextPile[x][y + 1]++;
+					nextPile[x][y - 1]++;
+				}
+			}
+		}		
+		grid1 = nextPile;
+		print_grid(grid1);
 	}
 }
 

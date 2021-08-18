@@ -13,7 +13,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int x, y;
 	int sumPile[3][3];
-	/*int i, j, sumGrid[3][3];*/
+	int nextPile[3][3];
 
 	/*Get the sums of two grids and put in new grid*/
 	for (x = 0; x < 3; x++)
@@ -25,8 +25,40 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	}
 	printf("=\n");
 	print_grid(sumPile);
-	printf("***DEBUG nextpile and grid1 should be equal**\n");
+	for (x = 0; x < 3; x++)
+	{
+		for (y = 0; y < 3; y++)
+		{
+			if (sumPile[x][y] < 4)
+				nextPile[x][y] = sumPile[x][y];
+		}
+	}
+
+	for (x = 0; x < 3; x++)
+	{
+		for (y = 0; y < 3; y++)
+		{
+			if (sumPile[x][y] >= 4)
+			{
+				nextPile[x][y] = sumPile[x][y] - 4;
+				nextPile[x + 1][y]++;
+				nextPile[x - 1][y]++;
+				nextPile[x][y + 1]++;
+				nextPile[x][y - 1]++;
+			}
+		}
+	
+	grid1 = nextPile;
+	print_grid(grid1);
+	}
 }
+
+/**
+ * print_grid - int grid[3][3]
+ * @grid: grid to print
+ * description: print grid
+ * Return: void
+ */
 static void print_grid(int grid[3][3])
 {
 	int i, j;

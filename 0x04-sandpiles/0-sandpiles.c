@@ -15,15 +15,11 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		for (y = 0; y < 3; y++)
 			grid1[x][y] += grid2[x][y];
 
-	unstable = stability_alert(grid1);
-
 	while (unstable)
 	{
 		unstable = stability_alert(grid1);
 		if (unstable == 0)
 			return;
-		printf("=\n");
-		print_grid(grid1);
 		for (x = 0; x < 3; x++)
 		{
 			for (y = 0; y < 3; y++)
@@ -61,6 +57,8 @@ int stability_alert(int grid[3][3])
 				alert++;
 	if (alert == 9)
 		return (0);
+	printf("=\n");
+	print_grid(grid);
 	return (1);
 }
 

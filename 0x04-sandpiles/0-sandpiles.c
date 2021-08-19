@@ -1,4 +1,3 @@
-
 #include "sandpiles.h"
 
 /**
@@ -8,51 +7,60 @@
  * description: function that computes the sum of two sandpiles
  * Return: void
  */
-
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int x, y, stable = 0;
-	/*Get the sums of two grids and put in new grid*/
+	int x, y, unstable = 1, sumGrid[3][3];
+
 	for (x = 0; x < 3; x++)
-	{
 		for (y = 0; y < 3; y++)
-		{
 			grid1[x][y] += grid2[x][y];
-			if (grid1[x][y] < 4)
-				stable++;
-		}
-	}
-	while (stable < 9)
+
+	while (unstable)
 	{
-		printf("=\n");
-		print_grid(grid1);
+		unstable = stability_alert(grid1);
+		if (unstable == 0)
+			return;
 		for (x = 0; x < 3; x++)
 		{
 			for (y = 0; y < 3; y++)
 			{
-				if (grid1[x][y] < 4)
+				sumGrid[x][y] = grid1[x][y];
+				if (sumGrid[x][y] > 3)
 				{
-					stable++;
-				}
-
-				if (grid1[x][y] > 3)
-				{
-					stable = 0;
 					grid1[x][y] -= 4;
-					if (x > -1)
+					if (x - 1 > -1)
 						grid1[x - 1][y]++;
-					if (x < 2)
+					if (x + 1 < 3)
 						grid1[x + 1][y]++;
-					if (y > -1)
+					if (y - 1 > -1)
 						grid1[x][y - 1]++;
-					if (y < 2)
+					if (y + 1 < 3)
 						grid1[x][y + 1]++;
 				}
 			}
 		}
 	}
 }
+/**
+ * stability_alert - int grid1[3][3]
+ * @grid: grid to check stability of
+ * description: function that checks stability of grid
+ * Return: 1 if unstable, 0 if stable
+ */
+int stability_alert(int grid[3][3])
+{
+	int x, y, alert = 0;
 
+	for (x = 0; x < 3; x++)
+		for (y = 0; y < 3; y++)
+			if (grid[x][y] < 4)
+				alert++;
+	if (alert == 9)
+		return (0);
+	printf("=\n");
+	print_grid(grid);
+	return (1);
+}
 
 /**
  * print_grid - int grid[3][3]

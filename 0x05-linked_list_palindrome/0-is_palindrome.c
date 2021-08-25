@@ -31,8 +31,9 @@ int isPalz(listint_t **left, listint_t *right)
 	/* check for current left and right, return false */
 	if (!right->next)
 		izP = isPalz(left, right->next);
-	if (izP == 1)
+	if (izP == 0)
 		return (0);
+
 	/* Check values at current left and right */
 	izP1 = (right->n == (*left)->n);
 	/* Move left to next node */

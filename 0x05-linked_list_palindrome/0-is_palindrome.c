@@ -23,14 +23,14 @@ int is_palindrome(listint_t **head)
 int isPalz(listint_t **left, listint_t *right)
 {
 	/* flags for palindrome test */
-	int izP = 0, izP1;
+	int izP, izP1;
 	/* stop recursion when right becomes NULL */
 	if (!right)
 		return (1);
 	/* If sub-list is not palindrome then no need to */
 	/* check for current left and right, return false */
-	if (!right->next)
-		izP = isPalz(left, right->next);
+	izP = isPalz(left, right->next);
+
 	if (izP == 0)
 		return (0);
 

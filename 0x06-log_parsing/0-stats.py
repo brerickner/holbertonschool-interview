@@ -11,9 +11,20 @@ file_size = 0
 
 try:
     for index, line in enumerate(fileinput.input()):
-        file_size += int(line.split(" ")[-1])
-        if (index % 10 == 0):
+        status = int(line.split(" ")[-2])
+        if (index == 0 or index % 10 == 0):
+            file_size += int(line.split(" ")[-1])
             print("File size: {}".format(file_size))
+        if status in statusDict:
+            statusDict[status] += 1
+            print("{}: {}".format(status, statusDict[status]))
             
 except KeyboardInterrupt: 
     print("File size: {}".format(file_size))
+except Exception:
+    pass
+finally:
+    print("File size: {}".format(file_size))
+    if (status in statusDict):
+        statusDict[status] += 1
+        print("{}: {}".format(status, statusDict[status]))

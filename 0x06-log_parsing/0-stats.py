@@ -12,5 +12,8 @@ file_size = 0
 try:
     for index, line in enumerate(fileinput.input()):
         file_size += int(line.split(" ")[-1])
+        if (index % 10 == 0):
+            print("File size: {}".format(file_size))
+            
 except KeyboardInterrupt: 
     print("File size: {}".format(file_size))

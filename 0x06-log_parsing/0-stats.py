@@ -28,16 +28,15 @@ if __name__ == "__main__":
     try:
         for index, line in enumerate(fileinput.input()):
             status = int(line.split(" ")[-2])
-
+            file_size += int(line.split(" ")[-1])
             if status in statusDict:
                 statusDict[status] += 1
-            if (index % 10 == 0):
-                file_size += int(line.split(" ")[-1])
+            if (index == 0 or index % 10 == 0):
                 printStuff()
 
     except KeyboardInterrupt:
         print("File size: {}".format(file_size))
-    # except Exception:
-    #     pass
+    except Exception:
+        pass
     finally:
         printStuff()

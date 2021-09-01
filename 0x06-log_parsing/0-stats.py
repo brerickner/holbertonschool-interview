@@ -31,12 +31,13 @@ if __name__ == "__main__":
             file_size += int(line.split(" ")[-1])
             if status in statusDict:
                 statusDict[status] += 1
+
             if (index == 0 or index % 10 == 0):
                 printStuff()
 
-    except KeyboardInterrupt:
-        print("File size: {}".format(file_size))
+    # except KeyboardInterrupt:
+    #     print("File size: {}".format(file_size))
     except Exception:
-        pass
+        print("File size: {}".format(file_size))
     finally:
         printStuff()

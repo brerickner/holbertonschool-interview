@@ -32,7 +32,7 @@ if __name__ == "__main__":
             if status in statusDict:
                 statusDict[status] += 1
 
-            if (index == 0 or index % 10 == 0):
+            if (index % 10 == 0):
                 printStuff()
 
     # except KeyboardInterrupt:
@@ -40,4 +40,4 @@ if __name__ == "__main__":
     except Exception:
         print("File size: {}".format(file_size))
     finally:
-        printStuff()
+        pass

@@ -38,6 +38,6 @@ if __name__ == "__main__":
     # except KeyboardInterrupt:
     #     print("File size: {}".format(file_size))
     except Exception:
-        print("File size: {}".format(file_size))
+        pass
     finally:
         pass

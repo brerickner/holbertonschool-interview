@@ -25,19 +25,26 @@ if __name__ == "__main__":
             if (val):
                 print("{}: {}".format(key, val))
 
-    try:
-        for index, line in enumerate(fileinput.input()):
-            status = int(line.split(" ")[-2])
-            file_size += int(line.split(" ")[-1])
-            if status in statusDict:
-                statusDict[status] += 1
-
-            if (index % 10 == 0):
+    for index, line in enumerate(sys.stdin):
+        if (line):
+            try:
+                status = int(line.split(" ")[-2])
+                file_size += int(line.split(" ")[-1])
+                if status in statusDict:
+                    statusDict[status] += 1
+                if (index % 10 == 0):
+                    print("File size: {}".format(file_size))
                 printStuff()
-
+            except Exception:
+                pass
+        else:
+            print("File size: {}".format(file_size))
+    else:
+        print("File size: {}".format(file_size))
+    # except:
     # except KeyboardInterrupt:
     #     print("File size: {}".format(file_size))
-    except Exception:
-        pass
-    finally:
-        print("File size: {}".format(file_size))
+    # except:
+    #     pass
+    # finally:
+    #     printStuff()

@@ -4,39 +4,33 @@
 import os
 import sys
 import fileinput
-import re
-
 
 if __name__ == "__main__":
     thisList = []
-    statusDict = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+    statusDict = {
+        200: 0,
+        301: 0,
+        400: 0,
+        401: 0,
+        403: 0,
+        404: 0,
+        405: 0,
+        500: 0}
     file_size = 0
-
-    def printStuff():
-        '''Method to print when divisible by 10 or EOF/Ctr + C'''
-        print("File size: {}".format(file_size))
-        for key, val in sorted(statusDict.items()):
-            if (val):
-                print("{}: {}".format(key, val))
-
 
     try:
         for index, line in enumerate(fileinput.input()):
-            if (re.match(".+ .+ \d+", line) == None):
-                # print("File size: {}".format(file_size))
-        
-                status = int(line.split(" ")[-2])
+            status = int(line.split(" ")[-2])
+            if (index == 0 or index % 10 == 0):
                 file_size += int(line.split(" ")[-1])
-
-                if status in statusDict:
-                    statusDict[status] += 1
-                
-                if (index % 10 == 0):
-                    printStuff()
+                print("File size: {}".format(file_size))
+            if status in statusDict:
+                statusDict[status] += 1
+                print("{}: {}".format(status, statusDict[status]))
 
     except KeyboardInterrupt:
         print("File size: {}".format(file_size))
-    # except Exception:
-    #     pass
+    except Exception:
+        pass
     finally:
-        printStuff()
+        pass

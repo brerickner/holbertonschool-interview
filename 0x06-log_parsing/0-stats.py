@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     def printStuff():
         '''Method to print when divisible by 10 or EOF/Ctr + C'''
-        print("File size: {}".format(file_size))
+        # print("File size: {}".format(file_size))
         for key, val in sorted(statusDict.items()):
             if (val):
                 print("{}: {}".format(key, val))
@@ -40,4 +40,4 @@ if __name__ == "__main__":
     except Exception:
         pass
     finally:
-        pass
+        print("File size: {}".format(file_size))

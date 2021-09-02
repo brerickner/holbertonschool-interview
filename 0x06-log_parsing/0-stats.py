@@ -66,12 +66,12 @@ if __name__ == "__main__":
                 printStuff
             if ((index + 1) % 10 == 0):
                 printStuff()
+            meow = index
 
-        if (index != 10):
-            printStuff()
+        # if (meow == 10):
+        #     printStuff()
 
     except KeyboardInterrupt:
         pass
-    # finally:
-        # if (meow == 0):
-        #     printStuff()
+    finally:
+        printStuff()

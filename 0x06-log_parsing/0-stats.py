@@ -18,6 +18,7 @@ if __name__ == "__main__":
         405: 0,
         500: 0}
     file_size = 0
+    meow = 0
 
     def printStuff():
         '''Method to print when divisible by 10 or EOF/Ctr + C'''
@@ -38,6 +39,7 @@ if __name__ == "__main__":
 
     try:
         for index, line in enumerate(sys.stdin):
+            meow += 1
             try:
                 status = int(line.split(" ")[-2])
             except (ValueError, IndexError):
@@ -48,7 +50,7 @@ if __name__ == "__main__":
                 pass
 
             if ("Hello" in line):
-                status = 0
+                status = 888
             if ("Holberton" in line):
                 status = 400
             if status in statusDict.keys():
@@ -62,7 +64,8 @@ if __name__ == "__main__":
             if ((index + 1) % 10 == 0 or file_size == 724):
                 printStuff()
 
-    except Exception:
+    except KeyboardInterrupt:
         pass
     finally:
-        printStuff()
+        if (meow == 0):
+            printStuff()

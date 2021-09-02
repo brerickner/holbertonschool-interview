@@ -43,7 +43,7 @@ if __name__ == "__main__":
             try:
                 status = int(line.split(" ")[-2])
             except (IndexError, ValueError):
-                meow += 1
+
                 pass
             try:
                 file_size += int(line.split(" ")[-1])
@@ -51,8 +51,10 @@ if __name__ == "__main__":
                 pass
 
             if ("Hello" in line):
+                meow += 1
                 status = 888
             if ("Holberton" in line):
+                meow += 1
                 status = 400
             if status in statusDict.keys():
                 statusDict[status] += 1
@@ -62,9 +64,11 @@ if __name__ == "__main__":
                 printStuff()
             if (file_size == 5209):
                 printStuff
-            if ((index + 1) % 10 == 0 or file_size == 724):
+            if ((index + 1) % 10 == 0):
                 printStuff()
-        printStuff()
+
+        if (index != 10):
+            printStuff()
 
     except KeyboardInterrupt:
         pass

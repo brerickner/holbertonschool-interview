@@ -40,11 +40,11 @@ if __name__ == "__main__":
         for index, line in enumerate(sys.stdin):
             try:
                 status = int(line.split(" ")[-2])
-            except IndexError:
+            except (ValueError, IndexError):
                 pass
             try:
                 file_size += int(line.split(" ")[-1])
-            except (IndexError, ValueError):
+            except (ValueError, IndexError):
                 pass
 
             if ("Hello" in line):
@@ -62,5 +62,7 @@ if __name__ == "__main__":
             if ((index + 1) % 10 == 0 or file_size == 724):
                 printStuff()
 
-    except KeyboardInterrupt as err:
+    except Exception:
         pass
+    finally:
+        printStuff()

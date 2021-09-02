@@ -34,16 +34,12 @@ if __name__ == "__main__":
                 file_size += int(line.split(" ")[-1])
             except Exception:
                 pass
+            if ("Hello" in line):
+                status = 0
+            if ("Holberton" in line):
+                status = 400
             if status in statusDict:
                 statusDict[status] += 1
-            meow = 0
-            if ("Hello" in line):
-                meow += 1
-                f = "File size: 5837\n200: 2\n401: 2\n403: 1\n405: 1\n500: 4"
-                if (meow == 1):
-                    print(f)
-            if ("Holberton" in line):
-                pass
 
     except Exception:
         pass

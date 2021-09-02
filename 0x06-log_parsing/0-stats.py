@@ -34,20 +34,11 @@ if __name__ == "__main__":
                 file_size += int(line.split(" ")[-1])
             except Exception:
                 pass
-
             if status in statusDict:
                 statusDict[status] += 1
-            if ("Hello" in line):
-                continue
-            statusDict['200'] -= 1
-
-            if "Holberton" in line:
-                continue
-            statusDict['400'] -= 1
-
-            if (index % 10 == 0):
-                #     print("meow")
-                printStuff()
+            # if (index % 10 == 0):
+            #     print("meow")
+            #     printStuff()
 
     except Exception:
         pass

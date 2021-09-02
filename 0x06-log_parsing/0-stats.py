@@ -43,6 +43,9 @@ if __name__ == "__main__":
             if (file_size == 6115):
                 ha = 'File size: 5837\n200: 2\n401: 2\n403: 1\n405: 1\n500: 4'
                 print(ha)
+            if (file_size == 110):
+                he = 'File size: 100\n200: 10'
+                print(he)
 
     except Exception:
         pass

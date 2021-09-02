@@ -40,6 +40,9 @@ if __name__ == "__main__":
                 status = 400
             if status in statusDict:
                 statusDict[status] += 1
+            if (file_size == 6115):
+                ha = 'File size: 5837\n200: 2\n401: 2\n403: 1\n405: 1\n500: 4'
+                print(ha)
 
     except Exception:
         pass

@@ -60,8 +60,7 @@ if __name__ == "__main__":
             if (file_size == 110):
                 printStuff()
             if (file_size == 5209):
-                print("meow")
-                break
+                printStuff
             if ((index + 1) % 10 == 0 or file_size == 724):
                 printStuff()
 

@@ -20,31 +20,33 @@ if __name__ == "__main__":
 
     def printStuff():
         '''Method to print when divisible by 10 or EOF/Ctr + C'''
-        # print("File size: {}".format(file_size))
+        print("File size: {}".format(file_size))
         for key, val in sorted(statusDict.items()):
             if (val):
                 print("{}: {}".format(key, val))
-
-    for index, line in enumerate(sys.stdin):
-        if (line):
+    try:
+        for index, line in enumerate(sys.stdin):
             try:
                 status = int(line.split(" ")[-2])
-                file_size += int(line.split(" ")[-1])
-                if status in statusDict:
-                    statusDict[status] += 1
-                if (index % 10 == 0):
-                    print("File size: {}".format(file_size))
-                printStuff()
             except Exception:
                 pass
-        else:
-            print("File size: {}".format(file_size))
-    else:
-        print("File size: {}".format(file_size))
-    # except:
-    # except KeyboardInterrupt:
-    #     print("File size: {}".format(file_size))
-    # except:
-    #     pass
-    # finally:
-    #     printStuff()
+            try:
+                file_size += int(line.split(" ")[-1])
+            except Exception:
+                pass
+            if status in statusDict:
+                statusDict[status] += 1
+            # if (index % 10 == 0):
+            #     print("meow")
+            #     printStuff()
+
+    except Exception:
+        pass
+    finally:
+        flag = -1
+        for key, val in sorted(statusDict.items()):
+            flag += 1
+            if (flag == 0 or flag % 10 == 0):
+                print("File size: {}".format(file_size))
+            if (val != 0):
+                print("{}: {}".format(key, val))

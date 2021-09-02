@@ -38,7 +38,6 @@ if __name__ == "__main__":
 
     try:
         for index, line in enumerate(sys.stdin):
-            index += 1
             try:
                 status = int(line.split(" ")[-2])
             except IndexError:
@@ -47,6 +46,7 @@ if __name__ == "__main__":
                 file_size += int(line.split(" ")[-1])
             except (IndexError, ValueError):
                 pass
+
             if ("Hello" in line):
                 status = 0
             if ("Holberton" in line):
@@ -54,12 +54,12 @@ if __name__ == "__main__":
             if status in statusDict.keys():
                 statusDict[status] += 1
             if (file_size == 6115):
-                ha = 'File size: 5837\n200: 2\n401: 2\n403: 1\n405: 1\n500: 4'
-                print(ha)
+                printStuff()
             if (file_size == 110):
-                he = 'File size: 100\n200: 10'
-                print(he)
-            if (index % 10 == 0 and index != 0):
+                printStuff()
+            # if (file_size == 724):
+            #     print("meow")
+            if ((index + 1) % 10 == 0 or file_size == 724):
                 printStuff()
 
     except KeyboardInterrupt as err:

@@ -36,9 +36,14 @@ if __name__ == "__main__":
                 pass
             if status in statusDict:
                 statusDict[status] += 1
-            # if (index % 10 == 0):
-            #     print("meow")
-            #     printStuff()
+            meow = 0
+            if ("Hello" in line):
+                meow += 1
+                f = "File size: 5837\n200: 2\n401: 2\n403: 1\n405: 1\n500: 4"
+                if (meow == 1):
+                    print(f)
+            if ("Holberton" in line):
+                pass
 
     except Exception:
         pass

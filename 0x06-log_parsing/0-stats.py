@@ -58,10 +58,10 @@ if __name__ == "__main__":
                 status = 400
             if status in statusDict.keys():
                 statusDict[status] += 1
-            if (file_size == 6115):
-                printStuff()
-            if (file_size == 110):
-                printStuff()
+            # if (file_size == 6115):
+            #     printStuff()
+            # if (file_size == 110):
+            #     printStuff()
             if (file_size == 5209):
                 printStuff
             if ((index + 1) % 10 == 0):

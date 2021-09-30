@@ -1,5 +1,101 @@
 #include "slide_line.h"
 
+/**
+* swapski - int *line, int zero, int direction
+* @line: the line
+* @zero: the index location of zero to swap
+* @direction: Left or right
+* description: function that swaps zeros in desired direction
+* Return: void
+*/
+void swapski(int *line, int zero, int direction)
+{
+	int hold = line[zero];
+
+	line[zero] = line[zero + direction];
+	line[zero + direction] = hold;
+}
+
+/**
+* makin_moves - int *line, int size, int direction
+* @line: the line
+* @size: the size
+* @direction: Left or right
+* description: does swaps in appropriate direction
+* Return: void
+*/
+void makin_moves(int *line, int size, int direction)
+{
+	int i, j;
+
+	switch (direction)
+	{
+		case SLIDE_LEFT:
+			for (i = 0, j = 0; i < size; i++)
+			{
+				for (j = 0; j < size - i - direction; j++)
+				{
+					if (line[j] == 0)
+						swapski(line, j, direction);
+				}
+			}
+			break;
+
+		case SLIDE_RIGHT:
+			for (i = size + direction; i > 0; i--)
+			{
+				for (j = size + direction; j > 0; j--)
+				{
+					if (line[j] == 0)
+					{
+						swapski(line, j, direction);
+					}
+				}
+			}
+			break;
+	}
+}
+
+/**
+* squish - int *line, int size, int direction
+* @line: the line
+* @size: the size
+* @direction: Left or right
+* description: squishes duplicates together and replaces old value with zero
+* Return: void
+*/
+void squish(int *line, int size, int direction)
+{
+	int i;
+
+	switch (direction)
+	{
+		case SLIDE_LEFT:
+			i = 0;
+			for (; i < size - direction; i++)
+			{
+				if (line[i] == line[i + direction])
+				{
+					line[i] += line[i + direction];
+					line[i + direction] = 0;
+				}
+			}
+			break;
+
+		case SLIDE_RIGHT:
+			i = size + direction;
+			for (; i > 0; i--)
+			{
+				if (line[i] == line[i + direction])
+				{
+					line[i] += line[i + direction];
+					line[i + direction] = 0;
+				}
+			}
+			break;
+	}
+	makin_moves(line, size, direction);
+}
 
 /**
 * slide_line - int *line, size_t size, int direction
@@ -10,91 +106,15 @@
 * Return: 1 upon success. Else 0
 */
 
-static void print_array(int const *array, size_t size)
-{
-    size_t i;
-
-    printf("BUFF ARRAY: ");
-    for (i = 0; i < size; i++)
-        printf("%s%d", i > 0 ? ", " : "", array[i]);
-    printf("\n");
-}
 
 int slide_line(int *line, size_t size, int direction)
 {
-	int index, jIndex = 0, zeros = 0, dups = 0;
-	int buffArray[size - zeros];
-	int current, lftNeighb, rtNeighb;
-
-	if (!line)
+	if (!line || ((direction != 1) && (direction != -1)) || (int)size < 1)
 	{
 		return (0);
 	}
-	if (direction != 0 && direction != 1)
-	{
-		return (0);
-	}
-	if (size < 1)
-	{
-		return (0);
-	}
+	makin_moves(line, size, direction);
+	squish(line, size, direction);
 
-	if (direction == SLIDE_LEFT)
-	{
-		zeros = 0;
-		jIndex = 0;
-		for (index = 0; index < (int)size - 1; index++)
-		{
-			current = line[index];
-			lftNeighb = line[index + 1];
-			jIndex = 0;
-			while ((zeros + jIndex) < (int)size)
-			{	
-				if (current == 0)
-				{
-					zeros++;
-					continue;
-				}
-				else if (current != 0 && current == lftNeighb)
-				{
-					zeros++;
-					buffArray[jIndex] = current + lftNeighb;
-					print_array(buffArray, size);
-					jIndex++;
-					continue;
-				}
-			}
-		}
-		
-	}
-	if (direction == SLIDE_RIGHT)
-	{
-		zeros = 0;
-		jIndex = 0;
-		for (index = size - 1; index > -1; index--)
-		{
-			current = line[index];
-			rtNeighb = line[index - 1];
-			while ((zeros + jIndex) < (int)size)
-			{
-				if (current == 0)
-				{
-					zeros++;
-					continue;
-				}
-				if (current == rtNeighb)
-				{
-					zeros++;
-					buffArray[jIndex] = current + rtNeighb;
-					jIndex++;
-					continue;
-				}
-			}
-		}
-
-		
-	}
 	return (1);
 }
-
-

@@ -2,16 +2,40 @@
 
 #define SIZE(x) (sizeof(x) / sizeof(x[0]))
 
+
+
+/**
+ * middleCheck - int rows, int cols
+ * @rows: x index
+ * @cols: y index
+ * description: function that flags the middle indexes to be removed
+ * Return: 1 if middle index. Else 0
+ */
+int middleCheck(int rows, int cols)
+{
+	while (cols)
+	{
+		if (rows % 3 == 1 && cols % 3 == 1)
+			return (1);
+		rows /= 3;
+		cols /= 3;
+	}
+	return (0);
+}
+
+
 /**
  * menger - int level
  * @level: level of the Menger Sponge to draw
  * description: function that draws a 2D Menger Sponge
  * Return: void
  */
+
 void menger(int level)
 {
-	int x, y, size = pow(3, level);
+	int x, y, size = pow(3, level), middle;
 	/* printf("size: %i\n", size);*/
+
 
 	if (level < 0)
 		return;
@@ -28,13 +52,12 @@ void menger(int level)
 		{
 			for (y = 0; y < size; y++)
 			{
-				if (x % 3 == 1 && y % 3 == 1)
-					printf("%s", " ");
+				middle = middleCheck(x, y);
 
+				if (middle)
+					printf("%s", " ");
 				else
-					{
-						printf("#");
-					}
+					printf("#");
 			}
 			printf("\n");
 		}

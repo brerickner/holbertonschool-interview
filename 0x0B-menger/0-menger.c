@@ -1,6 +1,6 @@
 #include "menger.h"
 
-#define SIZE(x) (sizeof(x) / sizeof(x[0]))
+/* #define SIZE(x) (sizeof x / sizeof x[0]) */
 
 
 

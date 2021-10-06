@@ -11,7 +11,7 @@
 void menger(int level)
 {
 	int x, y, size = pow(3, level);
-	printf("size: %i\n", size);
+	/* printf("size: %i\n", size);*/
 
 	if (level < 0)
 		return;
@@ -21,24 +21,22 @@ void menger(int level)
 		printf("%s\n", "#");
 		return;
 	}
-		
-	else 
+
+	else
 	{
 		for (x = 0; x < size; x++)
 		{
-			for(y = 0; y < size; y++)
+			for (y = 0; y < size; y++)
 			{
 				if (x % 3 == 1 && y % 3 == 1)
 					printf("%s", " ");
-				
+
 				else
 					{
 						printf("#");
 					}
 			}
-			printf("\n");	
+			printf("\n");
 		}
-		// printf("\n");
 	}
-		
 }

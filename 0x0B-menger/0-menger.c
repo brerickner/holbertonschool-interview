@@ -13,12 +13,10 @@
  */
 int middleCheck(int rows, int cols)
 {
-	while (cols)
+	for (; cols; rows /= 3, cols /= 3)
 	{
 		if (rows % 3 == 1 && cols % 3 == 1)
 			return (1);
-		rows /= 3;
-		cols /= 3;
 	}
 	return (0);
 }

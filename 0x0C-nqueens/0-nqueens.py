@@ -2,7 +2,6 @@
 ''' Module to solve the N Queens Problem '''
 
 import sys
-import itertools
 
 
 def nowWhat(board, size):
@@ -23,7 +22,7 @@ def nowWhat(board, size):
     rowsFree = (x for x in range(size) if x not in rowsTaken)
     colsTaken = frozenset(y for x, y in board)
     colsFree = (y for y in range(size) if y not in colsTaken)
-    bothFree = itertools.product(rowsFree, colsFree)
+    bothFree = ((x, y) for x in rowsFree for y in colsFree)
     diagA = frozenset(x + y for x, y in board)
     diagB = frozenset(x - y for x, y in board)
     return ((x, y) for x, y in bothFree if x + y not in diagA

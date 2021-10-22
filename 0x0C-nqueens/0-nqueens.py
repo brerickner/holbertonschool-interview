@@ -25,8 +25,10 @@ def nowWhat(board, size):
     bothFree = ((x, y) for x in rowsFree for y in colsFree)
     diagA = frozenset(x + y for x, y in board)
     diagB = frozenset(x - y for x, y in board)
-    return ((x, y) for x, y in bothFree if x + y not in diagA
-            and x - y not in diagB)
+    return (
+        (x, y) for x, y in bothFree if x + y not in diagA
+        and x - y not in diagB
+        )
 
 
 def sorted_remaining(board, size):
@@ -60,7 +62,7 @@ def nqueens(size, board=[]):
         yield from nqueens(size, newBoard)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
     try:
         args = len(sys.argv)
@@ -91,5 +93,5 @@ if __name__ == "__main__":
         exit(1)
 
     cells = nqueens(size)
-    for solution in cells:
+    for solution in cells():
         print([list(sols) for sols in solution])

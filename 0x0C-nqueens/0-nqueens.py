@@ -33,7 +33,9 @@ def sorted_remaining(board, size):
         maxX = max(x for x, y in board)
     else:
         maxX = -1
-    return ((x, y) for x, y in nowWhat(board, size) if x > maxX)
+    return ((x, y)
+            for x, y in nowWhat(board, size)
+            if x > maxX)
 
 
 def nqueens(size, board=[]):

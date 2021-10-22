@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module to solve the N Queens Problem """
+"""Module to solve the N Queens Problem"""
 
 import sys
 
@@ -61,7 +61,7 @@ def nqueens(size, board=[]):
 
 
 if __name__ == "__main__":
-    sols = 0
+
     try:
         args = len(sys.argv)
 
@@ -74,9 +74,10 @@ if __name__ == "__main__":
         size = int(sys.argv[1])
 
     except IndexError:
-        '''When arg not a number'''
+        """When arg not a number"""
         print("Usage: nqueens N")
         exit(1)
+
     except ValueError:
         print("N must be a number")
         exit(1)
@@ -84,9 +85,11 @@ if __name__ == "__main__":
     if(args == 0 | args > 2):
         print("Usage: nqueens N")
         exit(1)
+
     if(size < 4):
         print("N must be at least 4")
         exit(1)
-    cells = list(nqueens(size))
+
+    cells = nqueens(size)
     for solution in cells:
         print([list(sols) for sols in solution])

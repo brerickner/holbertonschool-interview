@@ -74,12 +74,14 @@ if __name__ == "__main__":
             print("N must be at least 4")
             exit(1)
 
+        cells = list(nqueens(size))
+        for solution in cells:
+            print([list(sols) for sols in solution])
     except ValueError:
         '''When arg not a number'''
         print("N must be a number")
         exit(1)
-
-    finally:
-        cells = list(nqueens(size))
-        for solution in cells:
-            print([list(sols) for sols in solution])
+    except NameError:
+        '''When arg not a number'''
+        print("N must be a number")
+        exit(1)

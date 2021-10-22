@@ -23,8 +23,8 @@ def nowWhat(board, size):
     bothFree = ((x, y) for x in rowsFree for y in colsFree)
     diagA = frozenset(x + y for x, y in board)
     diagB = frozenset(x - y for x, y in board)
-    return ((x, y) for x, y in bothFree if x + y not in diagA
-            and x - y not in diagB)
+    return ((x, y) for x, y in bothFree
+            if x + y not in diagA and x - y not in diagB)
 
 
 def sorted_remaining(board, size):
@@ -33,9 +33,7 @@ def sorted_remaining(board, size):
         maxX = max(x for x, y in board)
     else:
         maxX = -1
-    return ((x, y)
-            for x, y in nowWhat(board, size)
-            if x > maxX)
+    return ((x, y) for x, y in nowWhat(board, size) if x > maxX)
 
 
 def nqueens(size, board=[]):

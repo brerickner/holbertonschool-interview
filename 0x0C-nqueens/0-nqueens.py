@@ -63,7 +63,7 @@ def nqueens(size, board=[]):
 if __name__ == "__main__":
     sols = 0
     try:
-        size = int(sys.argv[1])
+        args = len(sys.argv)
 
     # no arg passed for size
     except Exception:
@@ -71,25 +71,22 @@ if __name__ == "__main__":
         exit(1)
 
     try:
-        args = len(sys.argv)
+        size = int(sys.argv[1])
 
-        if(args == 0 | args > 2):
-            print("Usage: nqueens N")
-            exit(1)
-
-        if(size < 4):
-            print("N must be at least 4")
-            exit(1)
-
-        cells = list(nqueens(size))
-        for solution in cells:
-            print([list(sols) for sols in solution])
-
+    except IndexError:
+        '''When arg not a number'''
+        print("Usage: nqueens N")
+        exit(1)
     except ValueError:
-        '''When arg not a number'''
         print("N must be a number")
         exit(1)
-    except NameError:
-        '''When arg not a number'''
-        print("N must be a number")
+
+    if(args == 0 | args > 2):
+        print("Usage: nqueens N")
         exit(1)
+    if(size < 4):
+        print("N must be at least 4")
+        exit(1)
+    cells = list(nqueens(size))
+    for solution in cells:
+        print([list(sols) for sols in solution])

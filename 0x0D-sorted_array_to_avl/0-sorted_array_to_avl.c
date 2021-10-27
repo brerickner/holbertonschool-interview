@@ -27,13 +27,13 @@ avl_t *binary_tree_node(binary_tree_t *parent, int value)
 * @array: pointer to first element of the array to be converted
 * @size: size_t value representing number of elements in the array
 * description: program that creates an AVL tree from an array
-* that has no duplicate values. 3 functions max. Functions cannot rotate. 
+* that has no duplicate values. 3 functions max. Functions cannot rotate.
 * Return: pointer to root node of newly created AVL tree or NULL if it fails.
 */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	if (array == NULL || size == 0)
 		return (NULL);
-	
-	return(binary_tree_node(NULL, array[0]));
+
+	return (binary_tree_node(NULL, array[0]));
 }

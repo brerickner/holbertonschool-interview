@@ -20,10 +20,11 @@ void _binary_tree_delete(binary_tree_t *tree)
 avl_t *binary_tree_node(int *array, avl_t *parent, int begin, int end)
 {
 	avl_t *newNode = malloc(sizeof(avl_t));
-	
+	int value;
+
 	if (newNode == NULL)
 		return (NULL);
-	int value = (begin + end) / 2;
+	value = (begin + end) / 2;
 	if (begin > end)
 		return (NULL);
 	/* create the new node with goodies */

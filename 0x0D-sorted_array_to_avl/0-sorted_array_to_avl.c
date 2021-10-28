@@ -17,6 +17,7 @@ avl_t *binary_tree_node(int *array, avl_t *parent, int indexer, int size)
 		return (NULL);
 
 	if (indexer > size)
+	    free(newNode);
 		return (NULL);
 
 /* create the new node with goodies */

@@ -9,19 +9,19 @@
  * Return: Pointer to new node. Else NULL
  */
 
-avl_t *binary_tree_node(int *array, avl_t *parent, int indexer, size_t size)
+avl_t *binary_tree_node(int *array, avl_t *parent, int indexer, int size)
 {
 	avl_t *newNode = malloc(sizeof(avl_t));
 
 	if (newNode == NULL)
 		return (NULL);
 
-	if (indexer > (int)size)
+	if (indexer > size)
 		return (NULL);
 
 /* create the new node with goodies */
-	newNode->parent = parent;
 	newNode->n = array[(indexer + size) / 2];
+	newNode->parent = parent;
 	newNode->left = (
 					binary_tree_node(
 						array,

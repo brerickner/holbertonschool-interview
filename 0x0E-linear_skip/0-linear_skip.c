@@ -15,37 +15,30 @@
 
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *skippy = NULL;
-	skiplist_t *buffList = NULL;
-	skiplist_t *skippyExpress = NULL;
-	int skippyN = 0;
+	skiplist_t *normalLane, *expressLane = NULL;
+	// int normalI = 0, expressI = 0;
+
 
 	if (list == NULL)
 		return (NULL);
 
-	skippy = list->express;
-	buffList = list;
+	expressLane = list->express;
+	normalLane = list;
 
-	for (; skippy; buffList = skippy, skippy = skippy->next)
+	for (; expressLane; expressLane = expressLane->express)
 	{
-		skippyExpress = skippy->express;
-		skippyN = skippy->n;
-
-		printf("Print #1 => Value checked at index [%lu] = [%d]\n", skippy->index, skippy->n);
-
-		if ((skippyExpress == NULL || skippyN >= value) && skippyN < value)
-			for (buffList = skippy; skippy->next; skippy = skippy->next)
-				;
-
-		printf("Print #2 => Value found between indexes [%lu] and [%lu]\n",
-			buffList->index, skippy->index);
-
-		for (; buffList; buffList = buffList->next)
+		printf("%d in EXPRESS LANE??: [%lu] = %d\n",value, expressLane->index, expressLane->n);
+		if (expressLane->express == NULL && value > expressLane->n)
 		{
-			printf("Print #3 =>Value checked at [%lu] = [%d]\n", buffList->index, buffList->n);
-			if (buffList->n == value)
-				return (buffList);
+			printf("%d NOT IN EXPRESS LANE! GO TO NORMAL LANE\n", value);
 		}
 	}
+
+
+	for (; normalLane; normalLane = normalLane->next)
+	{
+		printf("%d in NORMAL LANE??: [%lu] = %d\n",value, normalLane->index, normalLane->n);
+	}
+		
 	return (NULL);
 }

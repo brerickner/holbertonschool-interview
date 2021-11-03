@@ -16,33 +16,26 @@
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *normalLane, *expressLane = NULL;
-	size_t lastValue;
 
 	if (list == NULL)
 		return (NULL);
 
-	expressLane = list->express;
-	normalLane = list;
-
-	for (; expressLane; expressLane = expressLane->express)
+	for (expressLane = list->express, normalLane = list; expressLane;
+	     normalLane = expressLane, expressLane = expressLane->express)
 	{
 		printf("Value checked at index [%lu] = [%d]\n",
 			expressLane->index, expressLane->n);
 
 		if (expressLane->express == NULL || expressLane->n >= value)
 		{
-			if (expressLane->express == NULL)
+			if (expressLane->express == NULL && expressLane->n < value)
 			{
-				lastValue = expressLane->index;
-				if (expressLane->n < value)
-				{
-					for (normalLane = expressLane; expressLane->next;
-					     expressLane = expressLane->next)
-						;
-				}
+				for (normalLane = expressLane; expressLane->next;
+					expressLane = expressLane->next)
+					;
 			}
 			printf("Value found between indexes [%lu] and [%lu]\n",
-				lastValue, expressLane->index);
+				 normalLane->index, expressLane->index);
 
 			for (; normalLane; normalLane = normalLane->next)
 			{

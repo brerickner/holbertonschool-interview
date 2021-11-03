@@ -31,18 +31,18 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		skippyExpress = skippy->express;
 		skippyN = skippy->n;
 
-		printf("Value checked at index [%lu] = [%d]\n", skippy->index, skippy->n);
+		printf("Print #1 => Value checked at index [%lu] = [%d]\n", skippy->index, skippy->n);
 
 		if ((skippyExpress == NULL || skippyN >= value) && skippyN < value)
 			for (buffList = skippy; skippy->next; skippy = skippy->next)
 				;
 
-		printf("Value found between indexes [%lu] and [%lu]\n",
+		printf("Print #2 => Value found between indexes [%lu] and [%lu]\n",
 			buffList->index, skippy->index);
 
 		for (; buffList; buffList = buffList->next)
 		{
-			printf("Value checked at [%lu] = [%d]\n", buffList->index, buffList->n);
+			printf("Print #3 =>Value checked at [%lu] = [%d]\n", buffList->index, buffList->n);
 			if (buffList->n == value)
 				return (buffList);
 		}

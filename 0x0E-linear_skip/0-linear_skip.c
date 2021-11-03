@@ -16,8 +16,7 @@
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *normalLane, *expressLane = NULL;
-	int end, endExpress;
-
+	size_t lastValue;
 
 	if (list == NULL)
 		return (NULL);
@@ -27,44 +26,32 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 
 	for (; expressLane; expressLane = expressLane->express)
 	{
-		printf("Value checked at index [%lu] = [%d] \n", expressLane->index, expressLane->n);
-		if (expressLane->express == NULL)
+		printf("Value checked at index [%lu] = [%d]\n",
+			expressLane->index, expressLane->n);
+
+		if (expressLane->express == NULL || expressLane->n >= value)
 		{
-			endExpress = (int)expressLane->index;
-			if (value > expressLane->n)
-				printf("%d NOT IN EXPRESS! START AT INDEX [%u] in NORMAL\n\n\n", value, endExpress);
-
-			/* NORMAL LANE */
-			for (normalLane->index = (size_t)endExpress; normalLane; normalLane = normalLane->next)
+			if (expressLane->express == NULL)
 			{
-				printf("STARTING AT INDEX [%u] OF NORMAL LANE = %d\n", endExpress, normalLane->n);
-				printf("%d in NORMAL LANE??: [%u] = %d\n", value, endExpress, normalLane->n);
-				if (normalLane->next == NULL)
+				lastValue = expressLane->index;
+				if (expressLane->n < value)
 				{
-					end = (int)normalLane->index;
-
-					printf("Is %d THE LAST VALUE?!\n", value);
-					
-					printf("Value found between indexes [%u] and [%i]\n", endExpress, end);
-					for(list->index = (size_t)endExpress; list->index >= (size_t)end; list = list->next)
-					{
-						printf("Value checked at index [%lu] = [%u]", list->index, list->n);
-						if (list->n == value)
-						{
-							printf("******VALUE FOUND at [%lu]****\n", list->index);
-							return (list);
-						}
-						else
-						{
-							printf("VALUE %d NOT IN LISTS!!!! NIL!\n", value);
-							return (NULL);
-						} 
-					}
-					return (NULL);
+					for (normalLane = expressLane; expressLane->next;
+					     expressLane = expressLane->next)
+						;
 				}
+			}
+			printf("Value found between indexes [%lu] and [%lu]\n",
+				lastValue, expressLane->index);
+
+			for (; normalLane; normalLane = normalLane->next)
+			{
+				printf("Value checked at index [%lu] = [%d]\n",
+					normalLane->index, normalLane->n);
+				if (normalLane->n == value)
+					return (normalLane);
 			}
 		}
 	}
-		
 	return (NULL);
 }

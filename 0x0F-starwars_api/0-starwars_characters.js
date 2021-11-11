@@ -31,7 +31,7 @@ request(url, async function (error, response, body) {
     // which is typically an error object.
     await new Promise(function (resolve, reject) {
       request(people, function (error, response, body) {
-        if (error) console.log(error);
+        if (error) reject(error);
 
         // Printing status code
         // console.log(response.statusCode);

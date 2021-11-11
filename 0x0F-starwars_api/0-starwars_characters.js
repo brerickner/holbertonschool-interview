@@ -24,6 +24,10 @@ request(url, async function (error, response, body) {
 
   // Extract new url for each character to make a new request for their name
   for (const people of Characters) {
+    // (resolve) is called when the asynchronous task completes successfully
+    // and returns the results of the task as a value. The second (reject)
+    // is called when the task fails, and returns the reason for failure,
+    // which is typically an error object.
     await new Promise(function (resolve, reject) {
       request(people, function (error, response, body) {
         if (error) console.log(error);

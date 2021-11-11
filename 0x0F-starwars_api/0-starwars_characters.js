@@ -12,7 +12,7 @@ let url = 'https://swapi-api.hbtn.io/api/films/';
 
 url = url + filmId + '/';
 
-request(url, (error, response, body) => {
+request(url, async function (error, response, body) {
   // Printing the error if occurred
   if (error) console.log(error);
 
@@ -24,15 +24,17 @@ request(url, (error, response, body) => {
 
   // Extract new url for each character to make a new request for their name
   for (const people of Characters) {
-    request(people, (error, response, body) => {
-      // Printing the error if occurred
-      if (error) console.log(error);
+    await new Promise(function (resolve, reject) {
+      request(people, function (error, response, body) {
+        if (error) console.log(error);
 
-      // Printing status code
-      // console.log(response.statusCode);
+        // Printing status code
+        // console.log(response.statusCode);
 
-      // Printing character name
-      console.log(JSON.parse(body).name);
+        // Printing character name
+        console.log(JSON.parse(body).name);
+        resolve();
+      });
     });
   }
 });

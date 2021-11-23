@@ -1,51 +1,71 @@
 #include "sort.h"
 
+
+/**
+* swap - int *a, int *b
+* @a: pointer to int a to be swapped
+* @b: pointer to int b to be swapped
+* description: Function that swapts the position of two elements
+* Return: void
+*/
+void swap(int *a, int *b)
+{
+	int temp = *a;
+
+	*a = *b;
+	*b = temp;
+}
+
+/**
+* heapify - int *array, int left, int right
+* @array: pointer to int array
+* @size: size of array
+* @index: index of array
+* description: Function that finds largest among root, left child and right child
+* Return: void
+*/
+void heapify(int *array, int size, int index)
+{
+	int hi = index;
+	int left = 2 * index + 1;
+	int right = 2 * index + 2;
+
+	if (left < size && array[left] > array[hi])
+		hi = left;
+	if (right < size && array[right] > array[hi])
+		hi = right;
+	
+	/* Swap and continue to heapify if root is not largest */
+	if (hi != index)
+	{
+		swap(&array[index], &array[hi]);
+		heapify(array, size, hi);
+		print_array(array, size);
+	}
+
+}
+
 /**
 * heap_sort - int *array, size_t size
 * @array: The array to be printed
 * @size: Number of elements in @array
-* description: Function that sorts an array of ints in ascending order
-* using the sift-down heap sort algorithm printing array after each swap.
+* description: Function to do heap sort
 * Return: void
 */
 void heap_sort(int *array, size_t size)
 {
-	int i, t = 0;
-	
-	for (i = (size - 2) / 2; i >= 0; i--) 
+	/* Build max heap */
+	for (int index = size / 2 - 1; index >= 0; index--)
+		heapify(array, size, index);
+
+	/* Heap sort */
+	for (int index = size - 1; index >= 0; index--)
 	{
-		downheap(array, size, i);
+		swap(&array[0], &array[index]);
+		/* Heapify root element to get highest element at root again*/
+		heapify(array, index, 0);
+		print_array(array, size);
 	}
-	for (i = 0; i < (int)size; i++)
-	{
-        	t = array[size - i - 1];
-		array[size - i - 1] = array[0];
-		array[0] = t;
-		downheap(array, size - i - 1, 0);
-		print_array(array, size - i);
-	}
+
 }
 
-void downheap(int *array, size_t size, int i)
-{
-	while (1)
-	{
-		int j = max_heapify(array, size, i, 2 * i + 1, 2 * i + 2);
-		if (j == i)
-			break;
-		int t = array[i];
-		array[i] = array[j];
-		array[j] = t;
-		i = j;
-	}
-}
-
-int max_heapify(int *array, int size, int i, int j, int k)
-{
-	int m = i;
-	if (j<size && array[j] > array[m])
-		m = j;
-	if (k<size && array[k] > array[m])
-		m = k;
-	return m;
-}

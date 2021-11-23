@@ -10,7 +10,7 @@
 */
 void heap_sort(int *array, size_t size)
 {
-	int i;
+	int i, t = 0;
 	
 	for (i = (size - 2) / 2; i >= 0; i--) 
 	{
@@ -18,7 +18,7 @@ void heap_sort(int *array, size_t size)
 	}
 	for (i = 0; i < (int)size; i++)
 	{
-        	int t = array[size - i - 1];
+        	t = array[size - i - 1];
 		array[size - i - 1] = array[0];
 		array[0] = t;
 		downheap(array, size - i - 1, 0);

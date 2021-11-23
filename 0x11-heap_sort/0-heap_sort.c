@@ -41,6 +41,7 @@ void heapify(int *array, int size, int index)
 		swap(&array[index], &array[hi]);
 		heapify(array, size, hi);
 		print_array(array, size);
+		printf("in swap\n");
 	}
 
 }
@@ -54,17 +55,24 @@ void heapify(int *array, int size, int index)
 */
 void heap_sort(int *array, size_t size)
 {
+	int index = size / 2 - 1;
+	
 	/* Build max heap */
-	for (int index = size / 2 - 1; index >= 0; index--)
+	for (; index >= 0; index--)
+	{
 		heapify(array, size, index);
+		print_array(array, size);
+		printf("in max heap");
+	}
 
 	/* Heap sort */
-	for (int index = size - 1; index >= 0; index--)
+	for (index = size - 1; index >= 0; index--)
 	{
 		swap(&array[0], &array[index]);
 		/* Heapify root element to get highest element at root again*/
 		heapify(array, index, 0);
 		print_array(array, size);
+		printf("in heap sort");
 	}
 
 }

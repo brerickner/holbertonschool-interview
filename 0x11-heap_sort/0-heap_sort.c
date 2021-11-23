@@ -25,7 +25,7 @@ void swap(int *array, size_t size, int *a, int *b)
 * @size: size of array
 * @start: start element
 * @end: end element
-* description: Function that finds largest of root, left child and right child
+* description: Function that creates a heap
 * Return: void
 */
 void heapify(int *array, size_t size, int start, int end)

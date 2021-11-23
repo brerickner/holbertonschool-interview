@@ -21,7 +21,7 @@ void swap(int *a, int *b)
 * @array: pointer to int array
 * @size: size of array
 * @index: index of array
-* description: Function that finds largest among root, left child and right child
+* description: Function that finds largest of root, left child and right child
 * Return: void
 */
 void heapify(int *array, int size, int index)
@@ -34,7 +34,7 @@ void heapify(int *array, int size, int index)
 		hi = left;
 	if (right < size && array[right] > array[hi])
 		hi = right;
-	
+
 	/* Swap and continue to heapify if root is not largest */
 	if (hi != index)
 	{

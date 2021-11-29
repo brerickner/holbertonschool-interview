@@ -7,5 +7,6 @@
 
 int advanced_binary(int *array, size_t size, int value);
 void print_func(int *array, int start, int end);
+int index_grabber(int *array, int start, int end, int value);
 
 #endif /* SEARCH_ALGOS_H */

@@ -14,8 +14,14 @@
 void print_func(int *array, int start, int end)
 {
 	printf("Searching in array: ");
+	
 	for (int i = start; i < end; i++)
-		printf("%d, ", array[i]);
+	{
+		if(i == end - 1)
+			printf("%d\n", array[i]);
+		else
+			printf("%d, ", array[i]);
+	}
 	printf("\n");	
 }
 
@@ -30,22 +36,63 @@ void print_func(int *array, int start, int end)
  */
 int advanced_binary(int *array, size_t size, int value)
 {
-	int middle = 0;
+	int index = 0;
 
-	if (!array || size < 2)
-		return (-1);
+	if (!array || size < 1)
+		return (index - 1);
 	
-	middle = (size / 2) + 1;
+	return(index_grabber(array, index, (int)size - 1, value));
+	
+}
 
-	if (array[middle] <= value)
+/**
+ * index_grabber - int *array, int start, int end, int value)
+ * @array: pointer to first element of array
+ * @start: index to start search
+ * @end: index to stop search
+ * @value: value to search for
+ * Description: Searches through array for index spot that matches value
+ * Return: index where value is located. Else -1
+ */
+int index_grabber(int *array, int start, int end, int value)
+{
+	char side;
+	int middle = 0;
+	int index = 0;
+
+	middle = (end / 2) + 1;
+	print_func(array, 0, end);
+	printf("*****************************\n");
+
+	printf("Middle Index: [%d] is %d\n", middle, array[middle]);
+	if(value > array[middle])
 	{
-		print_func(array, 0, size);
-		print_func(array, 0, middle);
+		printf("Value: %d > Middle: %d\n", value, array[middle]);
+		print = "l";
+	}
+	if(value <= array[middle])
+	{
+		printf("Value: %d <= middle: %d\n", value, array[middle]);
 	}
 
-	if(array[middle] > value)
-		print_func(array, middle, size);
+	/* If value less than middle number, print and search left half*/
+	if (array[middle] >= value)
+	{
+		if(array[middle] == value)
+			index = middle;
+		else
+		{
+			index = index_grabber(array, start, middle - 1, value);	
+		}
+	}
 	
-	// print_func(array, 0, size);
-	return(array[0]);
+	/* If value higher than middle number, print and search right half*/
+	if(array[middle] > value)
+	{
+		print_func(array, middle, end - 1);
+		index = index_grabber(array, middle, end - 1, value);
+	}
+	if (index != -1)
+		return (index);
+	return(-1);
 }

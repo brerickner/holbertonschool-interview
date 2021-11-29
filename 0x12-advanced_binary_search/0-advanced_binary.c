@@ -56,43 +56,30 @@ int advanced_binary(int *array, size_t size, int value)
  */
 int index_grabber(int *array, int start, int end, int value)
 {
-	char side;
+	/*
+	 * if start is greater than end, return -1
+	 * if start is equal to end, return start
+	 * if start is less than end, return index
+	 */
+	int print_flag = 0;
 	int middle = 0;
 	int index = 0;
 
-	middle = (end / 2) + 1;
-	print_func(array, 0, end);
+	middle = (end / 2) + start;
+	print_func(array, start, end);
 	printf("*****************************\n");
 
 	printf("Middle Index: [%d] is %d\n", middle, array[middle]);
 	if(value > array[middle])
 	{
 		printf("Value: %d > Middle: %d\n", value, array[middle]);
-		print = "l";
+		print_flag = 0;
 	}
 	if(value <= array[middle])
 	{
 		printf("Value: %d <= middle: %d\n", value, array[middle]);
+		print_flag = 1;
 	}
-
-	/* If value less than middle number, print and search left half*/
-	if (array[middle] >= value)
-	{
-		if(array[middle] == value)
-			index = middle;
-		else
-		{
-			index = index_grabber(array, start, middle - 1, value);	
-		}
-	}
-	
-	/* If value higher than middle number, print and search right half*/
-	if(array[middle] > value)
-	{
-		print_func(array, middle, end - 1);
-		index = index_grabber(array, middle, end - 1, value);
-	}
-	if (index != -1)
-		return (index);
-	return(-1);
+	printf("print_flag: %d\n", print_flag);
+	return(index);
 }

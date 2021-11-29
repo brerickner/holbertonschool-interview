@@ -3,24 +3,23 @@
 
 
 /**
- * print_func - int *array, size_t size, int start, int end
+ * print_func - int *array, size_t size, int front, int back
  * @array: pointer to first element of array
  * @size: size of array
- * @start: index to start printing
- * @end: index to end printing
+ * @front: index to front printing
+ * @back: index to back printing
  * Description: prints array after each split
  * Return: void
  */
-void print_func(int *array, int start, int end)
+void print_func(int *array, int front, int back)
 {
 	printf("Searching in array: ");
 	
-	for (int i = start; i < end; i++)
+	for (; front < back; front++)
 	{
-		if(i == end - 1)
-			printf("%d\n", array[i]);
-		else
-			printf("%d, ", array[i]);
+		printf("%d", array[front]);
+		if(front != back - 1)
+			printf(", ");
 	}
 	printf("\n");	
 }
@@ -41,56 +40,51 @@ int advanced_binary(int *array, size_t size, int value)
 	if (!array || size < 1)
 		return (index - 1);
 	
-	return(index_grabber(array, index, (int)size, value));
+	return(index_grabber(array, 0, (int)size, value));
 	
 }
 
 /**
- * index_grabber - int *array, int start, int end, int value)
+ * index_grabber - int *array, int front, int back, int value)
  * @array: pointer to first element of array
- * @start: index to start search
- * @end: index to stop search
+ * @front: index to front search
+ * @back: index to stop search
  * @value: value to search for
  * Description: Searches through array for index spot that matches value
  * Return: index where value is located. Else -1
  */
-int index_grabber(int *array, int start, int end, int value)
+int index_grabber(int *array, int front, int back, int value)
 {
 	/*
-	 * if start is greater than end, return -1
-	 * if start is equal to end, return start
-	 * if start is less than end, return index
+	 * if front is greater than back, return -1
+	 * if front is equal to back, return front
+	 * if front is less than back, return index
 	 */
-	int print_flag = 0;
-	int middle = 0;
-	int index = 0;
-
-	middle = (end / 2);
-	print_func(array, start, end);
-
-
-	printf("*****************************\n");
-
-	printf("Middle Index: [%d] is %d\n", middle, array[middle]);
-	if(value > array[middle])
+	int middle;
+	
+	if (back >= front)
 	{
-		printf("Value: %d > Middle: %d\n", value, array[middle]);
-		print_flag = 0;
-	}
-	if(value <= array[middle])
-	{
-		printf("Value: %d <= middle: %d\n", value, array[middle]);
-		print_flag = 1;
-	}
-	printf("print_flag: %d\n", print_flag);
-	if(print_flag == 0)
-	{
-		print_func(array, middle, end);
-	}
+		print_func(array, front, back);
+		middle = front + (back - front) / 2;
 
-	if (print_flag == 1)
-	{
-		print_func(array, start, middle);
+		if (front == back)
+		{
+			return(-1);
+		}
+		/* If element at middle itself*/
+		if ((array[middle] == value) && (array[middle - 1] != value))
+			return (middle);
+
+		/* If element is smaller than mid, must be in left*/
+		if(value <= array[middle])
+		{
+			return(index_grabber(array, front, middle, value));
+		}
+		/*Else it's in the right side*/
+		if(value >= array[middle])
+		{
+			return(index_grabber(array, middle + 1, back, value));
+		}
 	}
-	return(index);
+	return(-1);
 }

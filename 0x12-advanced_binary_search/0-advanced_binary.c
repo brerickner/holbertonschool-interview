@@ -57,7 +57,7 @@ int index_grabber(int *array, int left, int right, int value)
 	 */
 	int middle;
 
-	if (right >= left)
+	if (right > left)
 	{
 		print_func(array, left, right);
 		middle = left + (right - left) / 2;

@@ -1,37 +1,33 @@
 #include "search_algos.h"
 
-
-
 /**
- * print_func - int *array, size_t size, int front, int back
+ * print_func - int *array, int left, int right
  * @array: pointer to first element of array
- * @size: size of array
- * @front: index to front printing
- * @back: index to back printing
+ * @left: index to left printing
+ * @right: index to right printing
  * Description: prints array after each split
  * Return: void
  */
-void print_func(int *array, int front, int back)
+void print_func(int *array, int left, int right)
 {
 	printf("Searching in array: ");
-	
-	for (; front < back; front++)
+
+	for (; left < right; left++)
 	{
-		printf("%d", array[front]);
-		if(front != back - 1)
+		printf("%d", array[left]);
+		if (left != right - 1)
 			printf(", ");
 	}
-	printf("\n");	
+	printf("\n");
 }
 
- /*
- * advanced_binary - int *array, size_t size, int value
- * @array: is a pointer to the first element of the array to search in
- * @size: is the number of elements in {array}
- * @value: is the value to search for
- * Description: function that searches for a value in a sorted array
- * of integers.
- * Return: the index of the first occurrence of value in array or -1
+/**
+ * advanced_binary - int *array, int size, int value
+ * @array: pointer to first element of array
+ * @size: size of array
+ * @value: value to search for
+ * Description: searches for value in array using recursive binary search
+ * Return: Index of value if found. Else -1.
  */
 int advanced_binary(int *array, size_t size, int value)
 {
@@ -39,52 +35,50 @@ int advanced_binary(int *array, size_t size, int value)
 
 	if (!array || size < 1)
 		return (index - 1);
-	
-	return(index_grabber(array, 0, (int)size, value));
-	
+
+	return (index_grabber(array, 0, (int)size, value));
 }
 
 /**
- * index_grabber - int *array, int front, int back, int value)
+ * index_grabber - int *array, int left, int right, int value)
  * @array: pointer to first element of array
- * @front: index to front search
- * @back: index to stop search
+ * @left: index to left search
+ * @right: index to stop search
  * @value: value to search for
  * Description: Searches through array for index spot that matches value
  * Return: index where value is located. Else -1
  */
-int index_grabber(int *array, int front, int back, int value)
+int index_grabber(int *array, int left, int right, int value)
 {
-	/*
-	 * if front is greater than back, return -1
-	 * if front is equal to back, return front
-	 * if front is less than back, return index
+	/**
+	 * if left is greater than right, return -1
+	 * if left is equal to right, return left
+	 * if left is less than right, return index
 	 */
 	int middle;
-	
-	if (back >= front)
-	{
-		print_func(array, front, back);
-		middle = front + (back - front) / 2;
 
-		if (front == back)
-		{
-			return(-1);
-		}
+	if (right >= left)
+	{
+		print_func(array, left, right);
+		middle = left + (right - left) / 2;
+
 		/* If element at middle itself*/
 		if ((array[middle] == value) && (array[middle - 1] != value))
+		{
+			print_func(array, middle, right);
 			return (middle);
+		}
 
 		/* If element is smaller than mid, must be in left*/
-		if(value <= array[middle])
+		if (value <= array[middle])
 		{
-			return(index_grabber(array, front, middle, value));
+			return (index_grabber(array, left, middle, value));
 		}
 		/*Else it's in the right side*/
-		if(value >= array[middle])
+		if (value >= array[middle])
 		{
-			return(index_grabber(array, middle + 1, back, value));
+			return (index_grabber(array, middle + 1, right, value));
 		}
 	}
-	return(-1);
+	return (-1);
 }

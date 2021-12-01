@@ -12,10 +12,10 @@ void print_func(int *array, int left, int right)
 {
 	printf("Searching in array: ");
 
-	for (; left < right; left++)
+	for (; left <= right; left++)
 	{
 		printf("%d", array[left]);
-		if (left != right - 1)
+		if (left != right)
 			printf(", ");
 	}
 	printf("\n");
@@ -36,7 +36,7 @@ int advanced_binary(int *array, size_t size, int value)
 	if (!array || size < 1)
 		return (index - 1);
 
-	return (index_grabber(array, 0, (int)size, value));
+	return (index_grabber(array, index, (int)size - 1, value));
 }
 
 /**
@@ -62,10 +62,11 @@ int index_grabber(int *array, int left, int right, int value)
 		print_func(array, left, right);
 		middle = left + (right - left) / 2;
 
+
 		/* If element at middle itself*/
 		if ((array[middle] == value) && (array[middle - 1] != value))
 		{
-			print_func(array, middle, right);
+			/* print_func(array, middle, right);*/
 			return (middle);
 		}
 

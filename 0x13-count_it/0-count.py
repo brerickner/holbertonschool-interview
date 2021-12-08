@@ -49,11 +49,12 @@ def count_words(subreddit, word_list, after=None, word_dict={}, flag=0):
         title = (titles.get('data')['title']).lower()
         for words in title.split():
             for word in word_list:
-                if words == word.lower():
-                    if word.lower() in word_dict.keys():
-                        word_dict[word.lower()] += 1
+                word = word.lower()
+                if words == word:
+                    if word in word_dict.keys():
+                        word_dict[word] += 1
                     else:
-                        word_dict[word.lower()] = 1
+                        word_dict[word] = 1
 
     if after:
         return(count_words(subreddit, word_list, after, word_dict, flag))

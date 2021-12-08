@@ -29,23 +29,34 @@ def count_words(subreddit, word_list, after=None, word_dict={}, flag=0):
             headers=headers,
             params=parameter,
             allow_redirects=False)
-    except BaseException:
-        print('Request failed, maybe no after?')
+    except:
+        return(None)
 
     if response.status_code != 200:
         return(None)
-    response = response.json()
-    meow = response.get('data')
-    children = meow.get('children')
-    after = meow.get('after')
+    try:
+        response = response.json()
+        meow = response.get('data')
+        children = meow.get('children')
+        after = meow.get('after')
+    except:
+        return(None)
+
+    # print(meow.get('children')[0].get('data')['title'])
+
     for titles in children:
-        title_fetch = titles.get('data')['title'].lower()
-        for word in word_list:
-            flag += 1
-            word_dict[word] = flag
+        title = (titles.get('data')['title']).lower()
+        for words in title.split():
+            for word in word_list:
+                if words == word.lower():
+                    if words in word_dict.keys():
+                        word_dict[word.lower()] += 1
+                    else:
+                        word_dict[word.lower()] = 1
+
     if after is None:
         for x in sorted(word_dict.keys(), reverse=True):
             print("{}: {}".format(x, word_dict[x]))
-        return(None)
     else:
         return(count_words(subreddit, word_list, after, word_dict, flag))
+    return(None)

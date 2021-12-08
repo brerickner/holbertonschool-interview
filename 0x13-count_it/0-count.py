@@ -21,13 +21,17 @@ def count_words(subreddit, word_list, after=None, word_dict={}, flag=0):
     url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
 
     ''' page through listings'''
-    parameter = {'limit': 100, 'after': after}
     headers = {"User-Agent": "Meow"}
-    response = requests.get(
-        url,
-        headers=headers,
-        params=parameter,
-        allow_redirects=False)
+    parameter = {'limit': 100, 'after': after}
+    try:
+        response = requests.get(
+            url,
+            headers=headers,
+            params=parameter,
+            allow_redirects=False)
+    except BaseException:
+        print('Request failed, maybe no after?')
+
     if response.status_code != 200:
         return(None)
     response = response.json()
@@ -36,13 +40,12 @@ def count_words(subreddit, word_list, after=None, word_dict={}, flag=0):
     after = meow.get('after')
     for titles in children:
         title_fetch = titles.get('data')['title'].lower()
-        # print(title_fetch)
         for word in word_list:
-            if word in title_fetch:
-                flag += 1
-                word_dict[word] = flag
+            flag += 1
+            word_dict[word] = flag
     if after is None:
-        for x in word_dict.keys():
+        for x in sorted(word_dict.keys(), reverse=True):
             print("{}: {}".format(x, word_dict[x]))
-        return
-    return(count_words(subreddit, word_list, after, word_dict, flag))
+        return(None)
+    else:
+        return(count_words(subreddit, word_list, after, word_dict, flag))

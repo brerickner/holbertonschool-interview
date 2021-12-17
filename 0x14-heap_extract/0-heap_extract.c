@@ -36,8 +36,8 @@ int binary_tree_height(heap_t *root)
 		return (0);
 
 	/* if no child to right or left, return 0 */
-	if (!root->left && !root->right)
-		return (0);
+	/* if (!root->left && !root->right) */
+		/*return (0);*/
 
 	/* Since the height of the root is defined as the largest path */
 	/* from the root to a leaf, we can recursively compute the height */
@@ -75,7 +75,7 @@ int heap_extract(heap_t **root)
 	theRoot = (*root)->n;
 
 	/* If root has no children, free root and set root to NULL */
-	if (!(*root)->left && !(*root)->right)
+	if (!(*root)->left)
 	{
 		free(*root);
 		*root = NULL;
@@ -86,10 +86,12 @@ int heap_extract(heap_t **root)
 
 	if (lastNode->parent->right == lastNode)
 		lastNode->parent->right = NULL;
-	lastNode->parent->left = NULL;
+	else
+		lastNode->parent->left = NULL;
 
-	free(lastNode);
 	heapify(*root);
+	free(lastNode);
+
 	return (theRoot);
 }
 
@@ -105,7 +107,7 @@ void heapify(heap_t *root)
 	heap_t *tempRoot;
 
 	/* If no children, leave function */
-	if (!root->left && !root->right)
+	if (!(root->left) && !(root->right))
 		return;
 
 	tempRoot = root->left;

@@ -71,7 +71,7 @@ int heap_extract(heap_t **root)
 	heap_t *lastNode;
 
 	/* If root is NULL or root's n is NULL, return 0 */
-	if (!root || !(*root)->n || !(*root))
+	if (!root || !(*root) || !(*root)->n)
 		return (0);
 
 	/* Store the value of the root node */

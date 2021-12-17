@@ -18,8 +18,7 @@ heap_t *last_node(heap_t *root)
 		rtHeight = binary_tree_height(root->right);
 	if (lftHeight == rtHeight)
 		return (last_node(root->right));
-	else
-		return (last_node(root->left));
+	return (last_node(root->left));
 }
 
 /**
@@ -30,9 +29,7 @@ heap_t *last_node(heap_t *root)
  */
 int binary_tree_height(heap_t *root)
 {
-	int lftHeight;
-	int rtHeight;
-
+	int lftHeight = 0, rtHeight = 0;
 
 	/* If root is NULL, your function must return 0 */
 	if (!root)
@@ -68,7 +65,7 @@ int binary_tree_height(heap_t *root)
 int heap_extract(heap_t **root)
 {
 	int theRoot = 0;
-	heap_t *lastNode;
+	heap_t *lastNode = NULL;
 
 	/* If root is NULL or root's n is NULL, return 0 */
 	if (!root || !(*root) || !(*root)->n)
@@ -78,7 +75,7 @@ int heap_extract(heap_t **root)
 	theRoot = (*root)->n;
 
 	/* If root has no children, free root and set root to NULL */
-	if (!(*root)->left)
+	if (!(*root)->left && !(*root)->right)
 	{
 		free(*root);
 		*root = NULL;
@@ -87,10 +84,9 @@ int heap_extract(heap_t **root)
 	lastNode = last_node(*root);
 	(*root)->n = lastNode->n;
 
-	if (lastNode->parent->left == lastNode)
-		lastNode->parent->left = NULL;
-	else
+	if (lastNode->parent->right == lastNode)
 		lastNode->parent->right = NULL;
+	lastNode->parent->left = NULL;
 
 	free(lastNode);
 	heapify(*root);

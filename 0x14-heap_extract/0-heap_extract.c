@@ -17,9 +17,9 @@ heap_t *last_node(heap_t *root)
 	if (root->right)
 		rtHeight = binary_tree_height(root->right);
 	if (lftHeight == rtHeight)
-		return (last_node(root->left));
-	else
 		return (last_node(root->right));
+	else
+		return (last_node(root->left));
 }
 
 /**
@@ -89,7 +89,8 @@ int heap_extract(heap_t **root)
 
 	if (lastNode->parent->left == lastNode)
 		lastNode->parent->left = NULL;
-	lastNode->parent->right = NULL;
+	else
+		lastNode->parent->right = NULL;
 
 	free(lastNode);
 	heapify(*root);

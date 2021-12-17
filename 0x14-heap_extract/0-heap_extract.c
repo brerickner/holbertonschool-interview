@@ -89,9 +89,7 @@ int heap_extract(heap_t **root)
 
 	if (lastNode->parent->left == lastNode)
 		lastNode->parent->left = NULL;
-
-	else
-		lastNode->parent->right = NULL;
+	lastNode->parent->right = NULL;
 
 	free(lastNode);
 	heapify(*root);

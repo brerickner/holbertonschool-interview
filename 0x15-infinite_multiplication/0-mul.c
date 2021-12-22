@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 int main(int argc, char *argv[])
 {
 
@@ -14,6 +13,7 @@ int main(int argc, char *argv[])
 		int b = atoi(argv[2]);
 		int c = a * b;
 		printf("%d\n", c);
+		return (0);
 	}
 	/* int a,b,result;*/
 	/* a = strlen("87879");*/

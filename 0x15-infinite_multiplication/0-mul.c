@@ -30,7 +30,10 @@ int main(int argc, char *argv[])
 			printf("0\n");
 			exit(0);
 		}
-		char result = atoi(argv[1]) * atoi(argv[2]);
+		int a = atoi(argv[1]);
+		int b = atoi(argv[2]);
+
+		result = a * b;
 
 		if (result != '0')
 		{

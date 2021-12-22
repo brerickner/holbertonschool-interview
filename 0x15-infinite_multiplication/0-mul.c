@@ -1,4 +1,12 @@
 #include "holberton.h"
+/**
+ * main - int argc, char *argv[]
+ * @argc: Number of arguments
+ * @argv: Array of 2 numbers to multiple
+ * Description: This program multiplies two numbers
+ * Return: Zero if successful. Else exit 98
+ */
+
 int main(int argc, char *argv[])
 {
 
@@ -9,11 +17,23 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		int a = atoi(argv[1]);
-		int b = atoi(argv[2]);
-		int c = a * b;
+		int len1 = zap_trim_getLen(argv[1]);
+		int len2 = zap_trim_getLen(argv[2]);
 
-		return (c);
+		if (len1 == 98 || len2 == 98)
+		{
+			printf("Error\n");
+			exit(98);
+		}
+		if (len1 == 0 || len2 == 0)
+		{
+			printf("0\n");
+			exit(0);
+		}
+		int result = atoi(argv[1]) * atoi(argv[2]);
+
+		printf("%d\n", result);
+		return (0);
 	}
 	/* int a,b,result;*/
 	/* a = strlen("87879");*/
@@ -23,4 +43,41 @@ int main(int argc, char *argv[])
 	/* printf("b: %d\n",b);*/
 	/* printf("result: %d\n",result);*/
 	/* printf ("Error");*/
+
+}
+/**
+ * zap_trim_getLen - char* str
+ * @str: a potential number being multiplied
+ * Description: Function that checks arguments for non-numeric characters
+ * Return: string to multiply if all characters are numeric.
+ * Else, exit(98) and print 'Error'.
+ */
+int zap_trim_getLen(char *str)
+{
+	int index, zeros, length = 0;
+
+	for (; str[index] != '\0'; index++)
+	{
+		if (str[index] < '0' || str[index] > '9')
+		{
+			return (98);
+		}
+		if (index == 0 || str[index] == '0')
+		{
+			if (index == 0 && str[index] == '0')
+			{
+				zeros = 1;
+			}
+			zeros++;
+		}
+		length++;
+	}
+	/* printf("length: %d\n", length);*/
+	/* printf("zeros: %d\n", zeros);*/
+	if (zeros >= length)
+	{
+		return (0);
+	}
+
+	return (length);
 }

@@ -7,5 +7,7 @@
 #include <string.h>
 
 int _putchar(char c);
+int zap_trim_getLen(char *str);
+
 
 #endif /*_HOLBERTON_H_*/

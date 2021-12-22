@@ -9,6 +9,7 @@
 
 int main(int argc, char *argv[])
 {
+	int result = 0;
 
 	if (argc != 3)
 	{
@@ -22,32 +23,25 @@ int main(int argc, char *argv[])
 
 		if (len1 == 98 || len2 == 98)
 		{
-			printf("0\n");
-			exit(98);
+			return (result);
 		}
 		if (len1 == 0 || len2 == 0)
 		{
 			printf("0\n");
 			exit(0);
 		}
-		int result = atoi(argv[1]) * atoi(argv[2]);
-		if (result != 0)
+		char result = atoi(argv[1]) * atoi(argv[2]);
+
+		if (result != '0')
 		{
 			printf("%d\n", result);
 		}
-
-
+		else
+		{
+			printf("0\n");
+		}
 		return (0);
 	}
-	/* int a,b,result;*/
-	/* a = strlen("87879");*/
-	/* b = strlen("406749840980484980487487987");*/
-	/* result = strlen("1654454331376");*/
-	/* printf("a: %d\n",a);*/
-	/* printf("b: %d\n",b);*/
-	/* printf("result: %d\n",result);*/
-	/* printf ("Error");*/
-
 }
 /**
  * zap_trim_getLen - char* str

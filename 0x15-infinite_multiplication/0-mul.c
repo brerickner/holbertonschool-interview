@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
 		if (len1 == 98 || len2 == 98)
 		{
-			printf("Error\n");
+			printf("0\n");
 			exit(98);
 		}
 		if (len1 == 0 || len2 == 0)
@@ -31,8 +31,12 @@ int main(int argc, char *argv[])
 			exit(0);
 		}
 		int result = atoi(argv[1]) * atoi(argv[2]);
+		if (result != 0)
+		{
+			printf("%d\n", result);
+		}
 
-		printf("%d\n", result);
+
 		return (0);
 	}
 	/* int a,b,result;*/

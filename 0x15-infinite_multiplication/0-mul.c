@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 
 		if (len1 == 0 || len2 == 0)
 		{
+			printf("0\n");
 			return (0);
 		}
 		return (0);
@@ -55,11 +56,8 @@ int zap_trim_getLen(char *str)
 			printf("Error\n");
 			exit(98);
 		}
-		if (str[index] == 48 && zeros == 0)
-		{
-			if (str[index] == 48)
-				zeros++;
-		}
+		if (str[index] == 48)
+			zeros++;
 		length++;
 	}
 	/*printf("length: %d\n", length);*/

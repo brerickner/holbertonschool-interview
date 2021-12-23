@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[])
 {
-	int result = 0;
+	int a, b, len1, len2, result = 0;
 
 	if (argc != 3)
 	{
@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		int len1 = zap_trim_getLen(argv[1]);
-		int len2 = zap_trim_getLen(argv[2]);
+		len1 = zap_trim_getLen(argv[1]);
+		len2 = zap_trim_getLen(argv[2]);
 
 		if (len1 == 98 || len2 == 98)
 		{
@@ -30,8 +30,8 @@ int main(int argc, char *argv[])
 			printf("0\n");
 			exit(0);
 		}
-		int a = atoi(argv[1]);
-		int b = atoi(argv[2]);
+		a = atoi(argv[1]);
+		b = atoi(argv[2]);
 
 		result = a * b;
 

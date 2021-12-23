@@ -15,7 +15,8 @@ int zap_trim_getLen(char *str);
 
 int main(int argc, char *argv[])
 {
-	int a, b, len1, len2, result = 0;
+	int len1 = 0;
+	int len2 = 0;
 
 	if (argc != 3)
 	{
@@ -27,27 +28,11 @@ int main(int argc, char *argv[])
 		len1 = zap_trim_getLen(argv[1]);
 		len2 = zap_trim_getLen(argv[2]);
 
-		if (len1 == 98 || len2 == 98)
-		{
-			return (result);
-		}
+
 		if (len1 == 0 || len2 == 0)
 		{
 			printf("0\n");
-			exit(0);
-		}
-		a = atoi(argv[1]);
-		b = atoi(argv[2]);
-
-		result = a * b;
-
-		if (result != '0')
-		{
-			printf("%d\n", result);
-		}
-		else
-		{
-			printf("0\n");
+			return (0);
 		}
 		return (0);
 	}
@@ -65,26 +50,28 @@ int zap_trim_getLen(char *str)
 
 	for (; str[index] != '\0'; index++)
 	{
-		if (str[index] < '0' || str[index] > '9')
+		printf("str[index]: %c\n", str[index]);
+		if (str[index] < 48 || str[index] > 57)
 		{
-			return (98);
+			printf("Error\n");
+			exit(98);
 		}
-		if (index == 0 || str[index] == '0')
+		if (str[index] == 48 && zeros == 0)
 		{
-			if (index == 0 && str[index] == '0')
-			{
-				zeros = 1;
-			}
-			zeros++;
+			if (str[index] == 48)
+				zeros++;
 		}
 		length++;
 	}
-	/* printf("length: %d\n", length);*/
-	/* printf("zeros: %d\n", zeros);*/
-	if (zeros >= length)
+	printf("length: %d\n", length);
+	printf("zeros: %d\n", zeros);
+	
+	if (length <= zeros)
 	{
+		printf("0\n");
 		return (0);
 	}
 
 	return (length);
+
 }

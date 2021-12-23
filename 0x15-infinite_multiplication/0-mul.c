@@ -50,7 +50,7 @@ int zap_trim_getLen(char *str)
 
 	for (; str[index] != '\0'; index++)
 	{
-		printf("str[index]: %c\n", str[index]);
+		/*printf("str[index]: %c\n", str[index]);*/
 		if (str[index] < 48 || str[index] > 57)
 		{
 			printf("Error\n");

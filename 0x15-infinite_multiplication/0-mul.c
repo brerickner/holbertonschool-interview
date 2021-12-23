@@ -28,7 +28,6 @@ int main(int argc, char *argv[])
 		len1 = zap_trim_getLen(argv[1]);
 		len2 = zap_trim_getLen(argv[2]);
 
-
 		if (len1 == 0 || len2 == 0)
 		{
 			printf("0\n");
@@ -46,14 +45,14 @@ int main(int argc, char *argv[])
  */
 int zap_trim_getLen(char *str)
 {
-	int index, zeros, length = 0;
+	int index = 0, zeros = 0, length = 0;
 
 	for (; str[index] != '\0'; index++)
 	{
 		/*printf("str[index]: %c\n", str[index]);*/
 		if (str[index] < 48 || str[index] > 57)
 		{
-			printf("Error meow\n");
+			printf("Error\n");
 			exit(98);
 		}
 		if (str[index] == 48)

@@ -1,4 +1,10 @@
-#include "holberton.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+
+int zap_trim_getLen(char *str);
 /**
  * main - int argc, char *argv[]
  * @argc: Number of arguments

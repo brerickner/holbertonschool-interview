@@ -63,9 +63,9 @@ int zap_trim_getLen(char *str)
 		}
 		length++;
 	}
-	printf("length: %d\n", length);
-	printf("zeros: %d\n", zeros);
-	
+	/*printf("length: %d\n", length);*/
+	/*printf("zeros: %d\n", zeros);*/
+
 	if (length <= zeros)
 	{
 		printf("0\n");

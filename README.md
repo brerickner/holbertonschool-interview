@@ -1,2 +1,2 @@
 #  :nerd_face:holbertonschool-interview
-##  Repository containing practice problems used as preparation for technical interviews.
+##  A repository containing practice problems used in preparation for technical interviews.

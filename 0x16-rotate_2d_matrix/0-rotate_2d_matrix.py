@@ -1,12 +1,16 @@
 #!/usr/bin/python3
-'''Module that Rotate 2D Matrix 90 degrees clockwise'''
+'''Module Rain'''
 
 
 def rotate_2d_matrix(matrix):
     '''
-    Rotates 2D matrix in-place 90 degrees to the right.
-    Assume matrix has 2 dimensions and not empty.
-    Return: void
+    Function rotate_2d_matrix -> takes positive int 'walls' as parameter
+    @matrix:
+        2d matrix of integers
+    Description:
+        Rotates 2d matrix 90 degrees clockwise.
+    Returns:
+        Nothing. Rotate in place.
     '''
     meow = [[]]
     meow = list(zip((*matrix[::-1])))

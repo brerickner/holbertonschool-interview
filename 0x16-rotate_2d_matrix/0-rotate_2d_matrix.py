@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Module Rain'''
+'''Module rotate_2d_matrix'''
 
 
 def rotate_2d_matrix(matrix):

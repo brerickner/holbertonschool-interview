@@ -3,7 +3,7 @@
 
 
 /**
- * merge_sort(int *array, size_t size)
+ * merge_sort - int *array, size_t size
  * @array: The array to be sorted
  * @size: Number of elements in @array
  * Description: Sorts an array of integers in ascending order using the
@@ -12,9 +12,9 @@
  * Time Complexity: O(n log n)
  * Space Complexity: O(n)
  * Stable: Yes
- * Psuedo Code: https://en.wikipedia.org/wiki/Merge_sort
- * Psuedo Code: https://www.geeksforgeeks.org/merge-sort/
- * Psuedo Code: https://www.geeksforgeeks.org/merge-sort-for-linked-list/
+ * Psuedo Code 0: https://en.wikipedia.org/wiki/Merge_sort
+ * Psuedo Code 1: https://www.geeksforgeeks.org/merge-sort/
+ * Psuedo Code 2: https://www.geeksforgeeks.org/merge-sort-for-linked-list/
  */
 
 void merge_sort(int *array, size_t size)
@@ -41,7 +41,7 @@ void merge_sort(int *array, size_t size)
 }
 
 /**
- * merge(int *array, int *buffArray, size_t start, size_t mid, size_t end)
+ * merge - int *array, int *buffArray, size_t start, size_t mid, size_t end
  * @array: The array to be sorted
  * @buffArray: The array to be sorted
  * @start: The start index of the array to be sorted

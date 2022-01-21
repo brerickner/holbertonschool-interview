@@ -6,5 +6,7 @@
 
 void print_array(const int *array, size_t size);
 void merge_sort(int *array, size_t size);
+void merge(int *array, int *buffArray, size_t start, size_t mid, size_t end);
+
 
 #endif /* _SORT_H_ */

@@ -12,11 +12,38 @@ def island_perimeter(grid):
     """
     peri = 0
     for index, row in enumerate(grid):
-        print(f"row {index}: {row}")
-        for col in row:
+        for cIndex, col in enumerate(row):
             if col == 1:
-                print(f"[{index}][{col}] + 2")
-                peri += 2
+                # print(f"row {index}: {row}")
+
+                # print(f"**[{index}, {cIndex}]**")
+                # print(f"up: {grid[index-1][cIndex]}")
+                # print(f"right: {grid[index][cIndex + 1]}")
+                # print(f"down: {grid[index + 1][cIndex]}")
+                # print(f"left: {grid[index][cIndex - 1]}")
+                # print("\n")
+                try:
+                    up = grid[index-1][cIndex]
+                    right = grid[index][cIndex + 1]
+                    down = grid[index + 1][cIndex]
+                    left = grid[index][cIndex - 1]
+                except:
+                    peri += 1
+
+
+                if up == 0: 
+                    peri += 1
+                if right == 0:
+                    peri += 1
+                if down == 0:
+                    peri += 1
+                if left == 0:
+                    peri += 1
+            
+
+          
+                # if ((index - 1) == 0) or ((index + 1) == 0):
+
      
     return (peri)
 

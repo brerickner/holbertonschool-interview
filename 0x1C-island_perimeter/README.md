@@ -1,6 +1,6 @@
-#  0x1C-island_perimeter
+# :desert_island: 0x1C-island_perimeter
 
-## Task
+## 	:clipboard: Task
 > Create a function def island_perimeter(**grid**): that returns the perimeter of the island described in grid:  
 * **grid** is a list of list of integers:
     * 0 represents water.
@@ -13,7 +13,7 @@
 * There is only one island (or nothing).
 
 
-##  Usage
+## :paperclip: Usage
 _0-main.py_ and _0-island_perimeter.py_ must be executable first. 
 ```bash
 $ cat 0-main.py
@@ -40,7 +40,7 @@ $ ./0-main.py
 12
 $ 
 ``` 
-##  Requirements
+## :triangular_flag_on_post: Requirements
 * Allowed editors: vi, vim, emacs
 * All your files will be interpreted/compiled on Ubuntu 14.04 LTS using python3 (version 3.4.3)
 * All your files should end with a new line
@@ -49,4 +49,4 @@ $
 * Your code should use the PEP 8 style (version 1.7)
 * You are not allowed to import any module
 * All modules and functions must be documented
->* All your files must be executable
+* All your files must be executable

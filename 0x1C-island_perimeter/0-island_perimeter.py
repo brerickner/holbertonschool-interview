@@ -27,19 +27,32 @@ def island_perimeter(grid):
                 # print("\n")
                 try:
                     up = grid[index - 1][cIndex]
-                    right = grid[index][cIndex + 1]
+                except IndexError:
+                    up = 0
+                try:
                     down = grid[index + 1][cIndex]
+                except IndexError:
+                    down = 0
+                try:
+                    right = grid[index][cIndex + 1]
+                except IndexError:
+                    right = 0
+                try:
                     left = grid[index][cIndex - 1]
-                except BaseException:
-                    peri += 1
+                except IndexError:
+                    left = 0
 
                 if up == 0:
+                    # print("up +1")
                     peri += 1
                 if right == 0:
+                    # print("rt +1")
                     peri += 1
                 if down == 0:
+                    # print("dwn +1")
                     peri += 1
                 if left == 0:
+                    # print("lft +1")
                     peri += 1
 
                 # if ((index - 1) == 0) or ((index + 1) == 0):

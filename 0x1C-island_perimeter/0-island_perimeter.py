@@ -16,19 +16,15 @@ def island_perimeter(grid):
     peri = 0
     for index, row in enumerate(grid):
         for cIndex, col in enumerate(row):
-            if col == 1:
-                # print(f"row {index}: {row}")
-
-                # print(f"**[{index}, {cIndex}]**")
-                # print(f"up: {grid[index-1][cIndex]}")
-                # print(f"right: {grid[index][cIndex + 1]}")
-                # print(f"down: {grid[index + 1][cIndex]}")
-                # print(f"left: {grid[index][cIndex - 1]}")
-                # print("\n")
-                try:
-                    up = grid[index - 1][cIndex]
-                except IndexError:
+            if col == 1 and index >= 0 and cIndex >= 0:
+                if index == 0:
                     up = 0
+                else:
+                    up = grid[index - 1][cIndex]
+                if cIndex == 0:
+                    left = 0
+                else:
+                    left = grid[index][cIndex - 1]
                 try:
                     down = grid[index + 1][cIndex]
                 except IndexError:
@@ -37,25 +33,26 @@ def island_perimeter(grid):
                     right = grid[index][cIndex + 1]
                 except IndexError:
                     right = 0
-                try:
-                    left = grid[index][cIndex - 1]
-                except IndexError:
-                    left = 0
-
-                if up == 0:
-                    # print("up +1")
-                    peri += 1
-                if right == 0:
-                    # print("rt +1")
-                    peri += 1
-                if down == 0:
-                    # print("dwn +1")
-                    peri += 1
-                if left == 0:
-                    # print("lft +1")
-                    peri += 1
-
-                # if ((index - 1) == 0) or ((index + 1) == 0):
+               
+                # print(f"**[{index}, {cIndex}]**")
+                # print(f"up: {grid[index-1][cIndex]}")
+                # print(f"right: {grid[index][cIndex + 1]}")
+                # print(f"down: {grid[index + 1][cIndex]}")
+                # print(f"left: {grid[index][cIndex - 1]}")
+                # print("\n")
+            if up == 0:
+                print("up +1")
+                peri += 1
+            if right == 0:
+                print("rt +1")
+                peri += 1
+            if down == 0:
+                print("dwn +1")
+                peri += 1
+            if left == 0:
+                print("lft +1")
+                peri += 1
+            # if ((index - 1) == 0) or ((index + 1) == 0):
 
     return (peri)
 

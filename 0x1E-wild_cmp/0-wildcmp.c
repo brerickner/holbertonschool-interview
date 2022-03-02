@@ -18,6 +18,10 @@ int wildcmp(char *s1, char *s2)
 
 		return (wildcmp(s1 + 1, s2 + 1));
 	}
+
+	/* Below covers these edge cases: */
+	/* wildcmp("holberton.c", "*h*o*l*b*e*r*t*o*n*.*c*")*/
+	/* wildcmp("","*")*/
 	else if (*s1 == '\0' && *s2 == '*')
 		return (wildcmp(s1, s2 + 1));
 	else if (*s2 == '*')

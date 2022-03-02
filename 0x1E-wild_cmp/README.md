@@ -1,4 +1,4 @@
-#  0x1E. Wild Compare
+#  :pirate_flag:Wild Compare
 
 ## 	:clipboard: **Requirements**
 * **You are not allowed to use loops of any kind**
